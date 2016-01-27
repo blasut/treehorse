@@ -1,0 +1,87 @@
+{% extends "layouts/default.html" %}
+{% block title %}Welcome to Analysfilen{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main">
+      <h1 class="page-header">Create a item</h1>
+
+      <div class="row placeholders">
+        <label>Choose template</label>
+        <select class="new-item-template">
+          <option>Välj template</option>
+          {% for template in templates %}
+          <option data-id="{{ template.template.template-id }}">{{ template.template.template }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <h2 class="sub-header"></h2>
+      {% for template in templates %}
+      <form class="form-horizontal" action="/items/new" method="post">
+        <div class="soft-hidden template-{{ template.template.template-id }}">
+          {% for field in template.fields %}
+          <div class="form-group">
+            <label for="{{field.field}}">{{field.field}}</label>
+            <input type="hidden" name="fields[][name]" value="{{ field.field }}"/>
+            <input type="hidden" name="fields[][type]" value="{{ field.type }}"/>
+            {% if field.defaults.first %}
+
+            {% ifequal field.type "radio-button" %}
+            {% for d in field.defaults %}
+            <div class="radio">
+              <label>
+                <input type="radio" name="{{field.field}}">
+                {{ d }}
+              </label>
+            </div>
+            {% endfor %}
+            {% endifequal %}
+            
+            {% ifequal field.type "dropdown" %}
+            <select class="form-control" name="{{field.field}}">
+              {% for d in field.defaults %}
+              <option name="{{ d }}">{{ d }}
+                {% endfor %}
+            </select>
+            {% endifequal %}
+            
+            
+            {% ifequal field.type "textarea" %}
+            <textarea class="form-control" name="{{field.field}}"></textarea>
+            {% endifequal %}
+            
+            {% ifequal field.type "checkbox" %}
+            {% for d in field.defaults %}
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="{{ d }}">
+                {{ d }}
+              </label>
+            </div>
+            {% endfor %}
+            {% endifequal %}   
+            
+            {% else %}                
+            <input class="form-control" type="{{ field.type }}" name="fields[][value]" value=""/>
+            {% endif %}
+          </div>
+          {% endfor %}
+
+
+          <div class="form-group">
+            <input class="btn btn-default soft-hidden template-{{ template.template.template-id }}" type="submit" value="Skapa">                
+          </div>
+          
+          <input class="hidden template-{{ template.template.template-id }}" type="hidden" value="{{ template.template.template }}" name="metadata[template-name]">
+          <input class="hidden template-{{ template.tempate.template-id }}" type="hidden" value="{{ template.template.template-key }}" name="metadata[template-id]">
+        </div>
+      </form>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

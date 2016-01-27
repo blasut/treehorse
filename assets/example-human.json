@@ -1,0 +1,31 @@
+{
+    "picture": "http://placehold.it/32x32", 
+    "guid": "d3129e77-9931-4fb1-bfca-d2a28bb641bf", 
+    "name": "Henry Gibson", 
+    "tags": [
+      "nostrud", 
+      "sunt", 
+      "exercitation", 
+      "deserunt", 
+      "et"
+    ], 
+    "gender": "male", 
+    "age": 31, 
+    "favoriteFruit": "banana", 
+    "registered": "2014-05-25T15:37:42 -10:00", 
+    "greeting": "Hello, Henry Gibson! You have 4 unread messages.", 
+    "longitude": -36.013046000000003, 
+    "email": "henrygibson@kengen.com", 
+    "phone": "+1 (942) 411-3974", 
+    "address": "833 Gerald Court, Lewis, Virginia, 9307", 
+    "latitude": -39.374197000000002, 
+    "balance": 1564.8499999999999, 
+    "friends": [
+      {
+        "id": 0, 
+        "name": "Dena Marquez"
+      }
+    ], 
+    "company": "KENGEN", 
+    "isActive": false
+}

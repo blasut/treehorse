@@ -1,0 +1,61 @@
+{% extends "layouts/default.html" %}
+{% block title %}Welcome to Analysfilen{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main">
+      <h1 class="page-header">Edit template</h1>
+
+      <div class="row placeholders">
+        <form method="post" action="/templates/{{template.template.template-id}}" class="new-template-fields-form form-inline">
+          <div id="form-group">
+            <label for="name">Namn: </label>
+            <input type="text" name="template" value="{{ template.template.template }}" class="form-control" />
+          </div>
+
+          <div class="new-template">
+            <p class="new-template-name"></p>
+            <label>Välj nytt fält:</label>
+            <select class="select-field-type">
+              <option>Välj fält</option>
+              {% for field in fields %}
+              <option data-id="{{ field.field-id }}" data-type="{{ field.type }}" data-defaults="{{ field.defaults }}">{{ field.field }}</option>
+              {% endfor %}
+            </select>
+            <button class="new-template-add-field btn btn-xs btn-primary">Lägg till fält</button>
+          </div>
+          
+          <h2 class="sub-header"></h2>
+          <div class="table-responsive">
+            <table class="table table-striped new-template-fields">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Defaults</th>
+                  <th>Remove</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for field in template.fields %}
+                <tr>
+                  <td>{{ field.field }}</td>
+                  <td>{{ field.type }}</td>
+                  <td>{{ field.defaults }}</td>
+                  <td><a href="#" data-id="" class="remove-field"><a href="#" class="remove-field"><span class="glyphicon glyphicon-remove red"></a></td>
+                  <input type="hidden" name="fields[]" value="{{ field.field-id }}" />
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <button class="save-template btn btn-success">Save template</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

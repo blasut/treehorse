@@ -1,0 +1,40 @@
+{% extends "layouts/default.html" %}
+{% block title %}Welcome to Analysfilen{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main">
+      <h1 class="page-header">Edit</h1>
+      
+      <div class="table-responsive">
+        <table class="table table-striped new-template-fields">
+          <tbody>
+            <form action="/items/{{ item.key }}" method="post">
+              <tr>
+                {% for field in item.fields %}
+                <td> {{ field.name }}</td>
+                {% endfor %}
+                <td>Spara</td>
+              </tr>
+              <tr>
+                {% for field in item.fields %}
+                <td>
+                  <input type="hidden" name="fields[][name]" value="{{ field.name }}"/>
+                  <input type="hidden" name="fields[][type]" value="{{ field.type }}"/>
+                  <input type="{{ field.type }}" name="fields[][value]" value="{{ field.value }}"/>
+                </td>
+                {% endfor %}    
+                <td><input class="btn" type="submit" value="Spara"></td>
+                <input class="hidden template-{{ template.key }}" type="hidden" value="{{ item.metadata.template-name.first }}" name="metadata[template-name]">
+                <input class="hidden template-{{ template.key }}" type="hidden" value="{{ item.metadata.template-id.first }}" name="metadata[template-id]">
+              </tr>
+            </form>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

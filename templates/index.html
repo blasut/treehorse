@@ -1,0 +1,22 @@
+{% extends "layouts/default.html" %}
+{% block title %}Welcome to Analysfilen{% endblock %}
+{% block content %}
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main">
+      <h1 class="page-header">Vänsterns analysfil.</h1>
+      
+      <ul class="list-group">
+        <h4>Det här är alla items</h4>
+        {% for item in items %}
+        <li class="list-group-item"><a href="/items/{{ item.key }}">{{ item.fields|first }}</a></li>
+        {% endfor %}
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

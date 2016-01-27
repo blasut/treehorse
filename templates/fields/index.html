@@ -1,0 +1,50 @@
+{% extends "layouts/default.html" %}
+{% block title %}Welcome to Analysfilen{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main">
+          <h1 class="page-header">Fields</h1>
+
+          <a href="/fields/new" class="btn btn-lg btn-primary">Nytt fält</a>
+          <div class="table-responsive">
+            <table class="table table-striped new-template-fields">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Defaults</th>
+                  <th>Edit</th>
+                  <th>Remove</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for field in fields %}
+                <tr>
+                  <td>
+                    {{ field.field }}
+                  </td>
+                  <td>
+                    {{ field.type }}
+                  </td>
+                  <td>
+                    {{ field.defaults }}
+                  </td>
+                  <td>
+                    <a href="/fields/{{field.field-id}}/edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                  </td>
+                  <td>
+                    <a href="/fields/{{field.field-id}}/delete"><span class="glyphicon glyphicon-remove red"></span></a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+{% endblock %}

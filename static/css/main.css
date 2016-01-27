@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.red {
+    color: red;
+}
+
+.soft-hidden {
+    display:none;
+}

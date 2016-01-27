@@ -1,0 +1,45 @@
+{% extends "layouts/default.html" %}
+{% block title %}Welcome to Analysfilen{% endblock %}
+{% block content %}
+
+<p class="flash">{{ flash }}</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main">
+      <h1 class="page-header">Edit field</h1>
+      
+      <form method="post" action="/fields/{{field.field-id}}" class="form-horizontal add-field-form">
+        <div class="form-group">
+          <label>Typ:</label>
+          <select name="field[type]" class="select-field-type">
+            {% for type in types %}
+            {% ifequal type.value field.type %}
+            <option value="{{type.value}}" selected>{{type.name}}</option>
+            {% else %}
+            <option value="{{type.value}}">{{type.name}}</option>
+            {% endifequal %}
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" name="field[field]" class="field-name" value="{{field.field}}">
+        </div>
+        
+        <div class="form-group">
+          <label for="values">Default values:</label>
+          <textarea name="field[defaults]" class="form-control">{{field.defaults}}</textarea>
+        </div>
+
+         <div class="form-group">
+           <input type="submit" value="Edit" class="btn btn-defaultadd-field-submit">
+         </div>
+
+    </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
